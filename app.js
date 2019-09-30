@@ -1,3 +1,4 @@
+/* eslint-disable function-paren-newline */
 const { React, ReactDOM } = window
 const ce = React.createElement
 
@@ -9,7 +10,7 @@ const instructors = [
 
 const ListItem = props => {
   const { name, key } = props
-  return ce('li', { key: key }, name)
+  return ce('li', { key }, name)
 }
 const ul = ce(
   'ul',
@@ -19,27 +20,29 @@ const ul = ce(
   )
 )
 
-class Counter extends React.Component {
+class LastClicked extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { counter: 0 }
+    this.state = { lastClicked: 'Never Clicked' }
+    this.handleClick = this.handleClick.bind(this)
   }
-  handleChange() {
-    console.log('CHANGING COUNTER')
-    this.setState({ counter: 1000 })
+  handleClick() {
+    this.setState({
+      lastClicked: new Date().toTimeString(),
+    })
   }
   render() {
     return ce(
       'div',
       null,
-      ce('p', null, `Counter: ${this.state.counter}`),
-      ce('button', { onChange: this.handleChange }, `Set Counter to 1000`)
+      ce('p', null, `Last Clicked: ${this.state.lastClicked}`),
+      ce('button', { onClick: this.handleClick }, `CLICK ME!`)
     )
   }
 }
 
 const h2 = ce('h2', null, 'Hello World!')
-const div = ce('div', null, h2, ul, ce(Counter))
+const div = ce('div', null, h2, ul, ce(LastClicked))
 
 const app = document.getElementById('app')
 ReactDOM.render(div, app)
