@@ -7,6 +7,11 @@ img {
   width: auto;
 }
 
+.instructor-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .instructor {
   margin: 10px;
   padding: 10px;

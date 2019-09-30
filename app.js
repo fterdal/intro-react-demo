@@ -2,7 +2,7 @@
 const { React, ReactDOM } = window
 const ce = React.createElement
 
-const instructors = [
+const dummyInstructors = [
   { id: 1, name: 'Finn' },
   { id: 2, name: 'Collin' },
   { id: 3, name: 'Priti' },
@@ -23,28 +23,30 @@ class Instructor extends React.Component {
       'div',
       {
         className: ['instructor', checkedStatus].join(' '),
-        onClick: () => this.setState({ checked: true })
+        onClick: () => this.setState({ checked: true }),
       },
       ce('p', null, name),
-      ce('img', { src: `https://robohash.org/${name}?size=200x200` }),
+      ce('img', { src: `https://robohash.org/${name}?size=200x200` })
     )
   }
 }
 
 // Functional React Component
-// const InstructorList = () => {
-//   return ce(
-//     'div',
-//     { className: 'instructor-list' }
-//   )
-// }
+const InstructorList = props => {
+  const { instructors } = props
+  return ce(
+    'div',
+    { className: 'instructor-list' },
+    instructors.map(instructor =>
+      ce(Instructor, { name: instructor.name, key: instructor.id })
+    )
+  )
+}
 
 const div = ce(
   'div',
   null,
-  ce(Instructor, { name: 'Finn' }),
-  ce(Instructor, { name: 'Collin' }),
-  ce(Instructor, { name: 'Priti' }),
+  ce(InstructorList, { instructors: dummyInstructors })
 )
 
 const app = document.getElementById('app')
