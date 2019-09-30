@@ -8,6 +8,7 @@ img {
 }
 
 .instructor {
+  margin: 10px;
   padding: 10px;
   border: 1px solid black;
   width: 150px;

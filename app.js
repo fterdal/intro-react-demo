@@ -13,19 +13,20 @@ class Instructor extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      checked: true,
+      checked: false,
     }
   }
   render() {
     const checkedStatus = this.state.checked ? 'checked' : 'unchecked'
+    const { name } = this.props
     return ce(
       'div',
-      { className: ['instructor', checkedStatus].join(' ') },
-      '[INSTRUCTOR NAME HERE]',
-      ce(
-        'img',
-        { src: 'https://robohash.org/finn?size=200x200' },
-      )
+      {
+        className: ['instructor', checkedStatus].join(' '),
+        onClick: () => this.setState({ checked: true })
+      },
+      ce('p', null, name),
+      ce('img', { src: `https://robohash.org/${name}?size=200x200` }),
     )
   }
 }
@@ -38,7 +39,13 @@ class Instructor extends React.Component {
 //   )
 // }
 
-const div = ce('div', null, ce(Instructor))
+const div = ce(
+  'div',
+  null,
+  ce(Instructor, { name: 'Finn' }),
+  ce(Instructor, { name: 'Collin' }),
+  ce(Instructor, { name: 'Priti' }),
+)
 
 const app = document.getElementById('app')
 ReactDOM.render(div, app)
