@@ -43,11 +43,9 @@ const InstructorList = props => {
   )
 }
 
-const div = ce(
-  'div',
-  null,
-  ce(InstructorList, { instructors: dummyInstructors })
-)
-
 const app = document.getElementById('app')
-ReactDOM.render(div, app)
+
+ReactDOM.render(
+  ce('div', null, ce(InstructorList, { instructors: dummyInstructors })),
+  app
+)
