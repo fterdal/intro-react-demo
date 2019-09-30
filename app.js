@@ -8,41 +8,37 @@ const instructors = [
   { id: 3, name: 'Priti' },
 ]
 
-const ListItem = props => {
-  const { name, key } = props
-  return ce('li', { key }, name)
-}
-const ul = ce(
-  'ul',
-  null,
-  instructors.map(instructor =>
-    ListItem({ name: instructor.name, key: instructor.id })
-  )
-)
-
-class LastClicked extends React.Component {
+// Class React Component
+class Instructor extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { lastClicked: 'Never Clicked' }
-    this.handleClick = this.handleClick.bind(this)
-  }
-  handleClick() {
-    this.setState({
-      lastClicked: new Date().toTimeString(),
-    })
+    this.state = {
+      checked: true,
+    }
   }
   render() {
+    const checkedStatus = this.state.checked ? 'checked' : 'unchecked'
     return ce(
       'div',
-      null,
-      ce('p', null, `Last Clicked: ${this.state.lastClicked}`),
-      ce('button', { onClick: this.handleClick }, `CLICK ME!`)
+      { className: ['instructor', checkedStatus].join(' ') },
+      '[INSTRUCTOR NAME HERE]',
+      ce(
+        'img',
+        { src: 'https://robohash.org/finn?size=200x200' },
+      )
     )
   }
 }
 
-const h2 = ce('h2', null, 'Hello World!')
-const div = ce('div', null, h2, ul, ce(LastClicked))
+// Functional React Component
+// const InstructorList = () => {
+//   return ce(
+//     'div',
+//     { className: 'instructor-list' }
+//   )
+// }
+
+const div = ce('div', null, ce(Instructor))
 
 const app = document.getElementById('app')
 ReactDOM.render(div, app)

@@ -1,0 +1,32 @@
+* {
+  font-family: sans-serif;
+}
+
+img {
+  height: auto;
+  width: auto;
+}
+
+.instructor {
+  padding: 10px;
+  border: 1px solid black;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+img {
+  width: 100px;
+  height: 100px;
+}
+
+.checked {
+  background-color: palegreen;
+}
+
+.unchecked {
+  background-color: pink;
+}
