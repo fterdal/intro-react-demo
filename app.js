@@ -1,4 +1,3 @@
-/* eslint-disable function-paren-newline */
 const { React, ReactDOM } = window
 
 const app = document.getElementById('app')
